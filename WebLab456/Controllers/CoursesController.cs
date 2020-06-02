@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,8 +18,7 @@ namespace WebLab456.Controllers
             _dbContext = new ApplicationDbContext();
         }
         // GET: Courses
-        [Authorize]
-        [HttpPost]
+        [Authorize]      
         public ActionResult Create()
         {
             var ViewModel = new CourseViewModel
@@ -26,6 +26,27 @@ namespace WebLab456.Controllers
                 Categories = _dbContext.Categories.ToList()
             };
             return View(ViewModel);
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult Create(CourseViewModel ViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewModel.Categories = _dbContext.Categories.ToList();
+                return View("Create", ViewModel);
+            }
+            var course = new Course
+            {
+                LecturerId = User.Identity.GetUserId(),
+                DateTime = ViewModel.GetDateTime(),
+                CategoryId = ViewModel.Category,
+                Place = ViewModel.Place
+            };
+            _dbContext.Courses.Add(course);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
