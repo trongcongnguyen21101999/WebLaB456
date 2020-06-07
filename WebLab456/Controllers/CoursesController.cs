@@ -29,6 +29,7 @@ namespace WebLab456.Controllers
         }
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel ViewModel)
         {
             if (!ModelState.IsValid)
