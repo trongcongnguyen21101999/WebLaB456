@@ -24,7 +24,7 @@ textarea {
 }
 /*NCT*/
 .navbar-inverse {
-    background-color: #f4ff00;
+    background-color: #939829;
     border-color: #080808;
 }
 .navbar-inverse .navbar-nav > li > a{
@@ -43,7 +43,7 @@ textarea {
 }
 .course > li .date {
     text-align:center;
-    background-color : #f4ff00;
+    background-color : #939829;
     color: white;
     width: 60px;
     border-radius:8px;
