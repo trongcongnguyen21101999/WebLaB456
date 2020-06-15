@@ -25,10 +25,10 @@
                 </span>
             </div>
             <div class="action">
-                <a href="@Url.Action("Edit", "Courses", new { id = course.Id})">
+                <a href="@Url.Action("Edit", "Courses", new { id = course.Id},null)">
                     Edit
                 </a>
-                <a href="#" class="js-cancel-course" data-course-id="@course.Id">
+                <a href="" class="js-cancel-course" data-course-id="@course.Id">
                     Cancel
                 </a>
             </div>
@@ -39,14 +39,16 @@
 {
     <script>
         $(document).ready(function () {
+
             $(".js-cancel-course").click(function (e) {
+              
                 e.preventDefault();
                 var link = $(e.target);
                 bootbox.confirm("Are you sure to cancel ?",
                     function () {
                         $.ajax({
-                            url: "/api/courses/" + link.attr("data-course-id"),
-                            method: "DELETE"
+                            url: "/api//sssscourses/" + link.attr("data-course-id"),
+                            type: "DELETE"
                         })
                         .done(function () {
                             link.parents("li").fadeOut(function () {

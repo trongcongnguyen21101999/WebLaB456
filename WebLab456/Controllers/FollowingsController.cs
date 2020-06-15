@@ -28,8 +28,10 @@ namespace WebLab456.Controllers
 
             var folowing = new Following
             {
-               FolloweeId = userId,
-               FollowerId = followingDto.FolloweeId
+                FolloweeId = userId,
+                FollowerId = followingDto.FolloweeId,
+               
+
             };
 
             _dbContext.Followings.Add(folowing);

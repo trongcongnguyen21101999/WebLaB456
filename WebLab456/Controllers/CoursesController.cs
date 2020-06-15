@@ -115,7 +115,7 @@ namespace WebLab456.Controllers
             course.Place = viewModel.Place;
             course.DateTime = viewModel.GetDateTime();
             course.CategoryId = viewModel.Category;
-
+           
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", "Home");
